@@ -1,12 +1,9 @@
-// RDS
-
-function get_rds_od_price(type, url) {
-  var response = UrlFetchApp.fetch(url);
-  var data = eval(response.getContentText());
+function get_rds_od_price(type, region, url) {
+  var data = eval(getPriceData(url));
   var regions = data['config']['regions'];
   for (var i = 0; i < regions.length; i++) {
-    var region = regions[i]['region'];
-    if(region == OD_REGION_NAME) {
+    var tmp_region = regions[i]['region'];
+    if(tmp_region == getOdRegion(region)) {
       var types = regions[i]['types'];
       for (var j = 0; j < types.length; j++) {
         var tiers = types[j]['tiers'];
@@ -21,13 +18,12 @@ function get_rds_od_price(type, url) {
   }
 }
 
-function get_rds_ri_price(type, term, is_hourly, is_multi, url) {
-  var response = UrlFetchApp.fetch(url);
-  var data = eval(response.getContentText());
+function get_rds_ri_price(type, region, term, is_hourly, is_multi, url) {
+  var data = eval(getPriceData(url));
   var regions = data['config']['regions'];
   for (var i = 0; i < regions.length; i++) {
-    var region = regions[i]['region'];
-    if(region == OD_REGION_NAME) {
+    var tmp_region = regions[i]['region'];
+    if(tmp_region == getOdRegion(region)) {
       var instypes = regions[i]['instanceTypes'];
       for (var j = 0; j < instypes.length; j++) {
         var tiers = instypes[j]['tiers'];
@@ -57,214 +53,4 @@ function get_rds_ri_price(type, term, is_hourly, is_multi, url) {
       }
     }
   }
-}
-
-// RDS for MySQL
-
-function rds_mysql_standard_od(type) {
-  return get_rds_od_price(type, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-standard-deployments.min.js");
-}
-
-function rds_mysql_multi_od(type) {
-  return get_rds_od_price(type, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-multiAZ-deployments.min.js");
-}
-
-function rds_mysql_ri_standard_light_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_standard_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_standard_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_standard_light_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_standard_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_standard_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_multi_light_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_multi_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_multi_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_multi_light_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_multi_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_mysql_ri_multi_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/mysql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-// RDS for Postgresql
-
-function rds_postgresql_standard_od(type) {
-  return get_rds_od_price(type, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-standard-deployments.min.js");
-}
-
-function rds_postgresql_multi_od(type) {
-  return get_rds_od_price(type, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-multiAZ-deployments.min.js");
-}
-
-function rds_postgresql_ri_standard_light_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_standard_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_standard_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_standard_light_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_standard_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_standard_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_multi_light_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_multi_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_multi_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_multi_light_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-light-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_multi_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_postgresql_ri_multi_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/postgresql/pricing-heavy-utilization-reserved-instances.min.js");
-}
-
-// RDS for Oracle(License include)
-
-function rds_oracle_standard_od(type) {
-  return get_rds_od_price(type, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-standard-deployments.min.js");
-}
-
-function rds_oracle_multi_od(type) {
-  return get_rds_od_price(type, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-multiAZ-deployments.min.js");
-}
-
-function rds_oracle_ri_standard_light_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-light-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_standard_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_standard_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, false, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_standard_light_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-light-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_standard_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_standard_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, false, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_multi_light_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-light-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_multi_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_multi_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, false, true, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-heavy-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_multi_light_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-light-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_multi_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-medium-utilization-reserved-instances.min.js");
-}
-
-function rds_oracle_ri_multi_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_rds_ri_price(type, term, true, true, "http://a0.awsstatic.com/pricing/1/rds/oracle/pricing-li-heavy-utilization-reserved-instances.min.js");
 }

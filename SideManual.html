@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<!-- The CSS package above applies Google styling to buttons and other elements. -->
+<style>
+.branding-below {
+  bottom: 56px;
+  top: 0;
+}
+.bordered {
+  border:solid 1px #ebebeb;
+  padding: 5px;
+}
+</style>
+<div class="sidebar branding-below">
+    <h1>Overview</h1>
+    <div class="block bordered">
+      AWS Pricing Helper will help you estimate pricing for your AWS resources.<br/>
+      <br/>
+      For more details on the functions, please read the description displayed while typing the function into the spreadsheet.<br/>
+      <br/>
+      Please use this add-on at your own risk.
+    </div>
+    <h1>Supported services</h1>
+    <div class="block bordered">
+      <ul>
+        <li>EC2 instances (Linux, Windows)</li>
+        <li>RDS instances (MySQL, PostgreSQL, Oracle)</li>
+      </ul>
+    </div>
+    <h1>Default Region &quot;ap-northeast-1&quot;</h1>
+    <div class="block bordered">
+      Because the developer is living in Japan :)<br/>
+      Change the region by adding a second argument to a custom function.<br/>
+      <br/>
+      <b>Region names for argument</b>
+    <ul>
+      <li>&quot;us-east&quot;</li>
+      <li>&quot;us-west-1&quot;</li>
+      <li>&quot;us-west-2&quot;</li>
+      <li>&quot;eu-west-1&quot;</li>
+      <li>&quot;ap-southeast-1&quot;</li>
+      <li>&quot;ap-southeast-2&quot;</li>
+      <li>&quot;ap-northeast-1&quot;</li>
+      <li>&quot;sa-east-1&quot;</li>
+    </ul>
+    </div>
+    <h1>Functions for Ondemand Instances</h1>
+    <div class="block bordered">
+      <b>Arguments</b>
+      <ol>
+        <li>Instance type</li>
+        <li>Region (Optional, default value is &quot;ap-northeast-1&quot;)</li>
+      </ol>
+      <b>Functions</b>
+      <ul>
+        <li>EC2_LINUX_OD</li>
+        <li>EC2_WINDOWS_OD</li>
+        <li>RDS_MYSQL_STD_OD</li>
+        <li>RDS_MYSQL_MULTI_OD</li>
+        <li>RDS_PGSQL_STD_OD</li>
+        <li>RDS_PGSQL_MULTI_OD</li>
+        <li>RDS_ORACLE_STD_OD</li>
+        <li>RDS_ORACLE_MULTI_OD</li>
+      </ul>
+    </div>
+    <h1>Functions for Reserved Instances</h1>
+    <div class="block bordered">
+      <b>Arguments</b>
+      <ol>
+        <li>Instance type</li>
+        <li>Region (Optional, default value is &quot;ap-northeast-1&quot;)</li>
+        <li>Reserved years (Optional, default value is 1)</li>
+      </ol>
+      <b>Functions</b>
+      <ul>
+        <li>EC2_LINUX_RI_LIGHT_AD</li>
+        <li>EC2_LINUX_RI_MEDIUM_AD</li>
+        <li>EC2_LINUX_RI_HEAVY_AD</li>
+        <li>EC2_WINDOWS_RI_LIGHT_AD</li>
+        <li>EC2_WINDOWS_RI_MEDIUM_AD</li>
+        <li>EC2_WINDOWS_RI_HEAVY_AD</li>
+        <li>EC2_LINUX_RI_LIGHT_HOUR</li>
+        <li>EC2_LINUX_RI_MEDIUM_HOUR</li>
+        <li>EC2_LINUX_RI_HEAVY_HOUR</li>
+        <li>EC2_WINDOWS_RI_LIGHT_HOUR</li>
+        <li>EC2_WINDOWS_RI_MEDIUM_HOUR</li>
+        <li>EC2_WINDOWS_RI_HEAVY_HOUR</li>
+        <li>RDS_MYSQL_STD_RI_LIGHT_AD</li>
+        <li>RDS_MYSQL_STD_RI_MEDIUM_AD</li>
+        <li>RDS_MYSQL_STD_RI_HEAVY_AD</li>
+        <li>RDS_MYSQL_MULTI_RI_LIGHT_AD</li>
+        <li>RDS_MYSQL_MULTI_RI_MEDIUM_AD</li>
+        <li>RDS_MYSQL_MULTI_RI_HEAVY_AD</li>
+        <li>RDS_MYSQL_STD_RI_LIGHT_HOUR</li>
+        <li>RDS_MYSQL_STD_RI_MEDIUM_HOUR</li>
+        <li>RDS_MYSQL_STD_RI_HEAVY_HOUR</li>
+        <li>RDS_MYSQL_MULTI_RI_LIGHT_HOUR</li>
+        <li>RDS_MYSQL_MULTI_RI_MEDIUM_HOUR</li>
+        <li>RDS_MYSQL_MULTI_RI_HEAVY_HOUR</li>
+        <li>RDS_PGSQL_STD_RI_LIGHT_AD</li>
+        <li>RDS_PGSQL_STD_RI_MEDIUM_AD</li>
+        <li>RDS_PGSQL_STD_RI_HEAVY_AD</li>
+        <li>RDS_PGSQL_MULTI_RI_LIGHT_AD</li>
+        <li>RDS_PGSQL_MULTI_RI_MEDIUM_AD</li>
+        <li>RDS_PGSQL_MULTI_RI_HEAVY_AD</li>
+        <li>RDS_PGSQL_STD_RI_LIGHT_HOUR</li>
+        <li>RDS_PGSQL_STD_RI_MEDIUM_HOUR</li>
+        <li>RDS_PGSQL_STD_RI_HEAVY_HOUR</li>
+        <li>RDS_PGSQL_MULTI_RI_LIGHT_HOUR</li>
+        <li>RDS_PGSQL_MULTI_RI_MEDIUM_HOUR</li>
+        <li>RDS_PGSQL_MULTI_RI_HEAVY_HOUR</li>
+        <li>RDS_ORACLE_STD_RI_LIGHT_AD</li>
+        <li>RDS_ORACLE_STD_RI_MEDIUM_AD</li>
+        <li>RDS_ORACLE_STD_RI_HEAVY_AD</li>
+        <li>RDS_ORACLE_MULTI_RI_LIGHT_AD</li>
+        <li>RDS_ORACLE_MULTI_RI_MEDIUM_AD</li>
+        <li>RDS_ORACLE_MULTI_RI_HEAVY_AD</li>
+        <li>RDS_ORACLE_STD_RI_LIGHT_HOUR</li>
+        <li>RDS_ORACLE_STD_RI_MEDIUM_HOUR</li>
+        <li>RDS_ORACLE_STD_RI_HEAVY_HOUR</li>
+        <li>RDS_ORACLE_MULTI_RI_LIGHT_HOUR</li>
+        <li>RDS_ORACLE_MULTI_RI_MEDIUM_HOUR</li>
+        <li>RDS_ORACLE_MULTI_RI_HEAVY_HOUR</li>
+      </ul>
+    </div>
+    <h1>Feedback</h1>
+    <div class="block bordered">
+      <a href="https://github.com/FumblePerson/gs-aws-pricing-helper">Please feedbacks on GitHub issues.</a>
+      <ul>
+        <li>Questions</li>
+        <li>Report bugs</li>
+        <li>Feature requests</li>
+        <li>etc...</li>
+      </ul>
+    </div>
+</div>
+<div class="sidebar bottom">
+  <span class="gray">
+    AWS Pricing Helper (0.1.0)<br/>
+    by Masashi Terui<br/>
+  </span>
+</div>

@@ -1,12 +1,9 @@
-//EC2
-
-function get_ec2_od_price(type, url) {
-  var response = UrlFetchApp.fetch(url);
-  var data = eval(response.getContentText());
+function get_ec2_od_price(type, region, url) {
+  var data = eval(getPriceData(url));
   var regions = data['config']['regions'];
   for (var i = 0; i < regions.length; i++) {
-    var region = regions[i]['region'];
-    if(region == OD_REGION_NAME) {
+    var tmp_region = regions[i]['region'];
+    if(tmp_region == getOdRegion(region)) {
       var instypes = regions[i]['instanceTypes'];
       for (var j = 0; j < instypes.length; j++) {
         var sizes = instypes[j]['sizes'];
@@ -21,13 +18,12 @@ function get_ec2_od_price(type, url) {
   }
 }
 
-function get_ec2_ri_price(type, term, is_hourly, url) {
-  var response = UrlFetchApp.fetch(url);
-  var data = eval(response.getContentText());
+function get_ec2_ri_price(type, region, term, is_hourly, url) {
+  var data = eval(getPriceData(url));
   var regions = data['config']['regions'];
   for (var i = 0; i < regions.length; i++) {
-    var region = regions[i]['region'];
-    if(region == RI_REGION_NAME) {
+    var tmp_region = regions[i]['region'];
+    if(tmp_region == getRiRegion(region)) {
       var instypes = regions[i]['instanceTypes'];
       for (var j = 0; j < instypes.length; j++) {
         var sizes = instypes[j]['sizes'];
@@ -55,76 +51,4 @@ function get_ec2_ri_price(type, term, is_hourly, url) {
       }
     }
   }
-}
-
-//EC2 Linux
-
-function ec2_linux_od(type) {
-  return get_ec2_od_price(type, "http://a0.awsstatic.com/pricing/1.0.19/ec2/linux-od.min.js");
-}
-
-function ec2_linux_ri_light_pre(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, false, "http://a0.awsstatic.com/pricing/1/ec2/linux-ri-light.min.js");
-}
-
-function ec2_linux_ri_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, false, "http://a0.awsstatic.com/pricing/1/ec2/linux-ri-medium.min.js");
-}
-
-function ec2_linux_ri_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, false, "http://a0.awsstatic.com/pricing/1/ec2/linux-ri-heavy.min.js");
-}
-
-function ec2_linux_ri_light_hour(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, true, "http://a0.awsstatic.com/pricing/1/ec2/linux-ri-light.min.js");
-}
-
-function ec2_linux_ri_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, true, "http://a0.awsstatic.com/pricing/1/ec2/linux-ri-medium.min.js");
-}
-
-function ec2_linux_ri_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, true, "http://a0.awsstatic.com/pricing/1/ec2/linux-ri-heavy.min.js");
-}
-
-//EC2 Windows(Standard)
-
-function ec2_windows_od(type) {
-  return get_ec2_od_price(type, "http://a0.awsstatic.com/pricing/1.0.19/ec2/mswin-od.min.js");
-}
-
-function ec2_windows_ri_light_pre(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, false, "http://a0.awsstatic.com/pricing/1/ec2/mswin-ri-light.min.js");
-}
-
-function ec2_windows_ri_medium_pre(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, false, "http://a0.awsstatic.com/pricing/1/ec2/mswin-ri-medium.min.js");
-}
-
-function ec2_windows_ri_heavy_pre(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, false, "http://a0.awsstatic.com/pricing/1/ec2/mswin-ri-heavy.min.js");
-}
-
-function ec2_windows_ri_light_hour(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, true, "http://a0.awsstatic.com/pricing/1/ec2/mswin-ri-light.min.js");
-}
-
-function ec2_windows_ri_medium_hour(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, true, "http://a0.awsstatic.com/pricing/1/ec2/mswin-ri-medium.min.js");
-}
-
-function ec2_windows_ri_heavy_hour(type, term) {
-  if(!term) term = 1
-  return get_ec2_ri_price(type, term, true, "http://a0.awsstatic.com/pricing/1/ec2/mswin-ri-heavy.min.js");
 }
