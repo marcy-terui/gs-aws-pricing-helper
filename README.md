@@ -16,7 +16,7 @@ Please use this add-on at your own risk.
 # Default Region "ap-northeast-1"
 
 Because the developer is living in Japan :)  
-Change the region by adding a second argument to a custom function.
+Change the region by adding a argument to the custom function.
 
 ### Region names for argument
 
@@ -57,7 +57,7 @@ Change the region by adding a second argument to a custom function.
 - EC2_LINUX_RI_LIGHT_AD
 - EC2_LINUX_RI_MEDIUM_AD
 - EC2_LINUX_RI_HEAVY_AD
-- _WINDOWS_RI_LIGHT_AD
+- EC2_WINDOWS_RI_LIGHT_AD
 - EC2_WINDOWS_RI_MEDIUM_AD
 - EC2_WINDOWS_RI_HEAVY_AD
 - EC2_LINUX_RI_LIGHT_HOUR
@@ -102,6 +102,19 @@ Change the region by adding a second argument to a custom function.
 - RDS_ORACLE_MULTI_RI_LIGHT_HOUR
 - RDS_ORACLE_MULTI_RI_MEDIUM_HOUR
 - RDS_ORACLE_MULTI_RI_HEAVY_HOUR
+
+# Functions for EBS Volumes
+
+### Arguments
+Region (Optional, default value is "ap-northeast-1")
+
+### Functions
+- EBS_GP2_STORAGE
+- EBS_MAGNETIC_STORAGE
+- EBS_PIOPS_STORAGE
+- EBS_SNAPSHOT_STORAGE
+- EBS_PIOPS_PROV
+- EBS_MAGNETIC_IO
 
 # Feedback
 
