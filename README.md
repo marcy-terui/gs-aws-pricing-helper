@@ -12,6 +12,7 @@ Please use this add-on at your own risk.
 
 - EC2 instances (Linux, Windows)
 - RDS instances (MySQL, PostgreSQL, Oracle)
+- EBS Volumes
 
 # Default Region "ap-northeast-1"
 
@@ -106,7 +107,7 @@ Change the region by adding a argument to the custom function.
 # Functions for EBS Volumes
 
 ### Arguments
-Region (Optional, default value is "ap-northeast-1")
+1. Region (Optional, default value is "ap-northeast-1")
 
 ### Functions
 - EBS_GP2_STORAGE
