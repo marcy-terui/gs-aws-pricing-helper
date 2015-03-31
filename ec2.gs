@@ -2,7 +2,7 @@ function get_ec2_od_price(type, region, url) {
   var data = eval(getPriceData(url));
   var regions = data['config']['regions'];
   for (var i = 0; i < regions.length; i++) {
-    if(regions[i]['region'] == getOdRegion(region)) {
+    if(regions[i]['region'] == getRiRegion(region)) {
       var instypes = regions[i]['instanceTypes'];
       for (var j = 0; j < instypes.length; j++) {
         var sizes = instypes[j]['sizes'];
