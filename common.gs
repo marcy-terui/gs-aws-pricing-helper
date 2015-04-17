@@ -42,11 +42,17 @@ function showSideManual() {
 
 function getPriceData(url) {
   var key = Utilities.base64Encode(url);
-  var cache = CacheService.getPublicCache();
-  var cached = cache.get(key);
+  var cacheHandler = new cCacheHandler.CacheHandler(600,null,false,false,CacheService.getPublicCache(), key);
+//  var cache = CacheService.getPublicCache();
+//  var cached = cache.get(key);
+//  if (cached == null) {
+//    cached = UrlFetchApp.fetch(url).getContentText();
+//    cache.put(key, cached);
+//  }
+  var cached = cacheHandler.getCache(key);
   if (cached == null) {
     cached = UrlFetchApp.fetch(url).getContentText();
-    cache.put(key, cached);
+    cacheHandler.putCache(cached, key);
   }
   return cached;
 }
