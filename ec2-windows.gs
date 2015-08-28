@@ -6,7 +6,7 @@
  * @customfunction
  */
 function EC2_WINDOWS_OD(type, region) {
-  return get_ec2_od_price(type, region, "https://a0.awsstatic.com/pricing/1/ec2/ri-v2/windows-shared.min.js");
+  return get_ec2_od_price(type, region, "mswin", "https://a0.awsstatic.com/pricing/1/ec2/mswin-od.min.js");
 }
 
 /**

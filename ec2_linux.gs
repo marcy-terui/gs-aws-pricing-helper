@@ -6,7 +6,7 @@
  * @customfunction
  */
 function EC2_LINUX_OD(type, region) {
-  return get_ec2_od_price(type, region, "https://a0.awsstatic.com/pricing/1/ec2/ri-v2/linux-unix-shared.min.js");
+  return get_ec2_od_price(type, region, "linux", "https://a0.awsstatic.com/pricing/1/ec2/linux-od.min.js");
 }
 
 /**
