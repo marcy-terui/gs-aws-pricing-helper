@@ -1,6 +1,26 @@
-function get_ec2_od_price(type, region, url) {
-  return get_ec2_price(type, region, 1, null, url, "onDemandHourly", "ODHourly");
+function get_ec2_od_price(size, region, os, url) {
+  var data = eval(getPriceData(url));
+  var regions = data['config']['regions'];
+  for (var i = 0; i < regions.length; i++) {
+    if(regions[i]['region'] == getRiRegion(region)) {
+      var instypes = regions[i]['instanceTypes'];
+      for (var j = 0; j < instypes.length; j++) {
+        sizes = instypes[j]['sizes']
+        for (var k = 0; k < sizes.length; k++) {
+          if(sizes[k]['size'] == size) {
+            var val = sizes[k]['valueColumns'];
+            for (var k = 0; k < val.length; k++) {
+              if (val[k]['name'] == os) {
+                return val[k]['prices']['USD']
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 
 function get_ec2_ri_price(type, region, term, is_hourly, url, purchaseOption) {
   return get_ec2_price(type, region, term, is_hourly, url, "purchaseOptions", purchaseOption);
@@ -24,7 +44,6 @@ function get_ec2_price(type, region, term, is_hourly, url, termType, purchaseOpt
                   if (is_hourly == null) {
                     return parseFloat(purchaseOptions[k]['prices']['USD']);
                   }
-
                   var valueColumns = purchaseOptions[k]['valueColumns'];
                   for (var m = 0; m < valueColumns.length; m++) {
                     if (is_hourly && valueColumns[m]['name'] == "monthlyStar") {
