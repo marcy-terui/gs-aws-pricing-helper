@@ -105,7 +105,7 @@ Change the region by adding a argument to the custom function.
 - RDS_ORACLE_MULTI_RI_PART_HOUR
 - RDS_ORACLE_MULTI_RI_ALL_HOUR
 
-** Old Purchase Options **
+**Old Purchase Options**
 - EC2_LINUX_RI_LIGHT_AD
 - EC2_LINUX_RI_MEDIUM_AD
 - EC2_LINUX_RI_HEAVY_AD
