@@ -36,8 +36,8 @@ function get_ec2_price(type, region, term, is_hourly, url, termType, purchaseOpt
         if(instypes[j]['type'] == type) {
           var terms = instypes[j]['terms'];
           for (var l = 0; l < terms.length; l++) {
-            if((terms[l]['term'] == "yrTerm1" && term == 1)
-               || (terms[l]['term'] == "yrTerm3" && term == 3)) {
+            if((terms[l]['term'] == "yrTerm1Standard" && term == 1)
+               || (terms[l]['term'] == "yrTerm3Standard" && term == 3)) {
               var purchaseOptions = terms[l][termType]
               for (var k = 0; k < purchaseOptions.length; k++) {
                 if (purchaseOptions[k]['purchaseOption'] == purchaseOption) {
