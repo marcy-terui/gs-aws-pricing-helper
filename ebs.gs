@@ -16,53 +16,53 @@ function get_ebs_price(region, type_name, sub_price) {
 }
 
 /**
- * Get price of hourly payment (per GB) on EBS General Purpose (SSD) volumes.
+ * Get price of hourly payment (per GB) on EBS General Purpose SSD (gp2) volumes.
  *
  * @param {region} Region(optional)
  * @customfunction
  */
 function EBS_GP2_STORAGE(region) {
-  return get_ebs_price(region, "Amazon EBS General Purpose (SSD) volumes");
+  return get_ebs_price(region, "Amazon EBS General Purpose SSD (gp2) volumes");
 }
 
 /**
- * Get price of hourly payment (per GB) on EBS Magnetic volumes.
+ * Get price of hourly payment (per GB) on EBS Cold HDD (sc1) volumes.
  *
  * @param {region} Region(optional)
  * @customfunction
  */
-function EBS_MAGNETIC_STORAGE(region) {
-  return get_ebs_price(region, "Amazon EBS Magnetic volumes");
+function EBS_MAGNETIC_COLD_STORAGE(region) {
+  return get_ebs_price(region, "Amazon EBS Cold HDD (sc1) volumes");
 }
 
 /**
- * Get price of hourly payment (per GB) on EBS Provisioned IOPS (SSD) volumes.
+ * Get price of hourly payment (per GB) on EBS Provisioned IOPS SSD (io1) volumes.
  *
  * @param {region} Region(optional)
  * @customfunction
  */
 function EBS_PIOPS_STORAGE(region) {
-  return get_ebs_price(region, "Amazon EBS Provisioned IOPS (SSD) volumes");
+  return get_ebs_price(region, "Amazon EBS Provisioned IOPS SSD (io1) volumes");
 }
 
 /**
- * Get price of hourly payment (per IOPS) on EBS Provisioned IOPS (SSD) volumes.
+ * Get price of hourly payment (per IOPS) on EBS Provisioned IOPS SSD (io1) volumes.
  *
  * @param {region} Region(optional)
  * @customfunction
  */
 function EBS_PIOPS_PROV(region) {
-  return get_ebs_price(region, "Amazon EBS Provisioned IOPS (SSD) volumes", true);
+  return get_ebs_price(region, "Amazon EBS Provisioned IOPS SSD (io1) volumes", true);
 }
 
 /**
- * Get price of hourly payment (per 1M IO requests) on EBS Provisioned IOPS (SSD) volumes.
+ * Get price of hourly payment (per GB) on EBS Throughput Optimized HDD (st1) volumes.
  *
  * @param {region} Region(optional)
  * @customfunction
  */
-function EBS_MAGNETIC_IO(region) {
-  return get_ebs_price(region, "Amazon EBS Magnetic volumes", true);
+function EBS_MAGNETIC_TP_STORAGE(region) {
+  return get_ebs_price(region, "Amazon EBS Throughput Optimized HDD (st1) volumes");
 }
 
 /**

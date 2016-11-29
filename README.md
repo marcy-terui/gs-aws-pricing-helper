@@ -21,7 +21,8 @@ Change the region by adding a argument to the custom function.
 
 ### Region names for argument
 
-- "us-east"
+- "us-east-1"
+- "us-east-2"
 - "us-west-1"
 - "us-west-2"
 - "eu-west-1"
@@ -162,11 +163,11 @@ Change the region by adding a argument to the custom function.
 
 ### Functions
 - EBS_GP2_STORAGE
-- EBS_MAGNETIC_STORAGE
+- EBS_MAGNETIC_COLD_STORAGE
+- EBS_MAGNETIC_TP_STORAGE
 - EBS_PIOPS_STORAGE
 - EBS_SNAPSHOT_STORAGE
 - EBS_PIOPS_PROV
-- EBS_MAGNETIC_IO
 
 # Feedback
 
